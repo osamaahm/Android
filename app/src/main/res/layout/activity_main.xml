@@ -48,6 +48,13 @@
         android:textAllCaps="false"
         android:text="Stop service"
         android:onClick="stopService"/>
+    <Button
+        android:id="@+id/broadcastBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom Broadcast"
+        android:textAllCaps="false"
+        android:onClick="broadcastIntent"/>
 
 
 </LinearLayout>

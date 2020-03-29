@@ -25,5 +25,13 @@ public class MainActivity extends AppCompatActivity {
     public void stopService(View view) {
         stopService(new Intent(MainActivity.this,MyService.class));
     }
+    public void broadcastIntent(View view)
+    {
+        Intent intent = new Intent();
+        intent.setAction("com.osama.CUSTOM_INTENT");
+        sendBroadcast(intent);
+
+
+    }
 
 }
