@@ -26,6 +26,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/imagebutton"
         android:layout_gravity="center"/>
+    <EditText
+        android:id="@+id/editTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bggray"
+        android:hint="Paste here"
+        android:textAlignment="center"
+        />
     <Button
         android:id="@+id/startBtn"
         android:layout_width="match_parent"
