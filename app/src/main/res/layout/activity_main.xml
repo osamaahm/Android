@@ -15,25 +15,12 @@
         android:layout_gravity="center"
         android:textSize="30dp"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="30dp"/>
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/imagebutton"
         android:layout_gravity="center"/>
-    <EditText
-        android:id="@+id/editTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bggray"
-        android:hint="Paste here"
-        android:textAlignment="center"
-        />
+
     <Button
         android:id="@+id/startBtn"
         android:layout_width="match_parent"
@@ -55,6 +42,36 @@
         android:text="Custom Broadcast"
         android:textAllCaps="false"
         android:onClick="broadcastIntent"/>
-
-
+    <EditText
+        android:id="@+id/editTxt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:textAlignment="center"
+        android:paddingBottom="2sp"
+        android:background="@drawable/bgborder"
+        />
+    <EditText
+        android:id="@+id/editTxt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Grade"
+        android:textAlignment="center"
+        android:paddingBottom="2sp"
+        android:background="@drawable/bgborder"
+        />
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Student Info"
+        android:textAllCaps="false"
+        android:onClick="onClickAddName"/>
+    <Button
+        android:id="@+id/retriveBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrive Student info"
+        android:textAllCaps="false"
+        android:onClick="onClickRetrive"/>
 </LinearLayout>
