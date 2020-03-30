@@ -103,6 +103,7 @@ public class StudentsProvider extends ContentProvider {
         if(sortOrder == null || sortOrder == ""){
             sortOrder = NAME;
         }
+
         Cursor c = qb.query(db, projection, selection, selectionArgs, null, null,sortOrder);
         c.setNotificationUri(getContext().getContentResolver(), uri);
         return c;

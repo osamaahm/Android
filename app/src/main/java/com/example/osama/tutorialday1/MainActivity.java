@@ -1,7 +1,9 @@
 package com.example.osama.tutorialday1;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -48,14 +50,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickAddName(View view){
-        ContentValues values = new ContentValues();
-        values.put(StudentsProvider.NAME,((EditText)findViewById(R.id.editTxt1)).getText().toString());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure to Add Data");
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Confirmed", Toast.LENGTH_SHORT).show();
 
-        values.put(StudentsProvider.GRADE, ((EditText)findViewById(R.id.editTxt2)).getText().toString());
+                ContentValues values = new ContentValues();
+                values.put(StudentsProvider.NAME,((EditText)findViewById(R.id.editTxt1)).getText().toString());
 
-        Uri uri = getContentResolver().insert(StudentsProvider.CONTENT_URI, values);
+                values.put(StudentsProvider.GRADE, ((EditText)findViewById(R.id.editTxt2)).getText().toString());
 
-        Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
+                Uri uri = getContentResolver().insert(StudentsProvider.CONTENT_URI, values);
+
+                Toast.makeText(getBaseContext(), uri.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Pls check yes to insert data", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alertDialogBuilder.create();
+        alertDialogBuilder.show();
+
     }
     public void onClickRetrive(View view){
         String URL = StudentsProvider.URL;
