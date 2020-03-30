@@ -16,21 +16,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String MESSAGE= "com.example.osama";
     String msg = "Android : ";
-
-    EditText nameET;
-    EditText gradeET;
-    Button addBtn;
-    Button retriveBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(msg, "The onCreate()event");
-        /*nameET = (EditText) findViewById(R.id.editTxt1);
-        gradeET = (EditText) findViewById(R.id.editTxt2);
-        addBtn = (Button) findViewById(R.id.addbtn);
-        retriveBtn = (Button) findViewById(R.id.retriveBtn);*/
+
     }
 
     public void startService(View view) {
@@ -92,5 +85,14 @@ public class MainActivity extends AppCompatActivity {
             }while (c.moveToNext());
         }
     }
+    // Method to send data to next page
+    public void goToSecondPage(View view){
+        Intent intent = new Intent(this, SecondaryActivity.class);
+        EditText sendET = (EditText) findViewById(R.id.editTxt3);
+        String message = sendET.getText().toString();
+        intent.putExtra( MESSAGE, "ANDROID "+ message );
+        startActivity(intent);
+    }
+    //end send data
 
 }
