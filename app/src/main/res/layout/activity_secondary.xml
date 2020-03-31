@@ -17,32 +17,85 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="30sp"/>
-    <Button
-        android:id="@+id/startBtn"
-        android:text="Start Recording"
-        android:textAllCaps="false"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="startRecording"/>
-    <Button
-        android:id="@+id/stopBtn"
-        android:text="Stop Recording"
-        android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="stopRecording"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/startBtn"
+            android:text="Start Recording"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startRecording"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/stopBtn"
+            android:text="Stop Recording"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="stopRecording"
+            android:layout_weight="1"/>/>
+    </LinearLayout>
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal">
     <Button
         android:id="@+id/playLastRecordBtn"
         android:text="Play Last Recording"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="playLastRecord"/>
+        android:onClick="playLastRecord"
+        android:layout_weight="1"/>
     <Button
         android:id="@+id/stopRecPlayBtn"
         android:text="Stop Playing Last Recording"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="stopPlayingLastRecord"/>
+        android:onClick="stopPlayingLastRecord"
+        android:layout_weight="1"/>
+ </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/vibratebtn"
+            android:text="vibrate"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="vibrateMode"/>
+
+        <Button
+            android:id="@+id/silentBtn"
+            android:text="silent"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="silentMode"/>
+
+        <Button
+            android:id="@+id/modeBtn"
+            android:text="mode"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="modeCheck"/>
+        <Button
+            android:id="@+id/normalModeBtn"
+            android:text="normal_mode"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="changeToNormalMode"/>
+    </LinearLayout>
 </LinearLayout>

@@ -1,10 +1,15 @@
 package com.example.osama.tutorialday1;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -32,6 +37,7 @@ public class SecondaryActivity extends AppCompatActivity {
 
     MediaPlayer mediaPlayer;
     MediaRecorder mediaRecorder;
+    AudioManager audioManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,8 @@ public class SecondaryActivity extends AppCompatActivity {
         stopRecording.setEnabled(false);
         startPlayRecording.setEnabled(false);
         stopPlayingLastRecording.setEnabled(false);
+
+        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
 
     }
 
@@ -163,9 +171,52 @@ public class SecondaryActivity extends AppCompatActivity {
         startRecording.setEnabled(true);
         startPlayRecording.setEnabled(true);
         stopPlayingLastRecording.setEnabled(false);
+
+
         mediaPlayer.stop();
         mediaPlayer.release();
 
     }
+    //*************************** End of Media capture   ********************///
 
+   //**************************** Start of Audio Manager ********************///
+    public void vibrateMode(View view){
+        audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+        Toast.makeText(this, "Changed to vibrate mode", Toast.LENGTH_SHORT).show();
+    }
+
+    public void silentMode(View view){
+
+        //**********this part does not work due to some platform related issue*******************//
+
+        Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+        startActivity(intent);
+
+        try {
+            audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+            Toast.makeText(this, "Changed to silent mode", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+
+        }
+    }
+
+    public void modeCheck(View view) {
+        int mode = audioManager.getRingerMode();
+
+        if(mode == AudioManager.RINGER_MODE_NORMAL)
+            Toast.makeText(this, "Current mode is "+"NORMAL" , Toast.LENGTH_LONG).show();
+
+        else if(mode == AudioManager.RINGER_MODE_SILENT)
+            Toast.makeText(this, "Current mode is "+"SILENT" , Toast.LENGTH_LONG).show();
+
+        else if(mode == AudioManager.RINGER_MODE_VIBRATE)
+            Toast.makeText(this, "Current mode is "+"VIBRATE" , Toast.LENGTH_LONG).show();
+
+    }
+
+    public void changeToNormalMode(View view) {
+        audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        Toast.makeText(this, "Changed to Normal mode", Toast.LENGTH_SHORT).show();
+    }
+    //**************************** End of Audio Manager ********************///
 }
