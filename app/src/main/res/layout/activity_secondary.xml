@@ -97,5 +97,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="changeToNormalMode"/>
+        <Button
+            android:id="@+id/notiBtn"
+            android:text="Tap for notification"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="showNotification"/>
     </LinearLayout>
 </LinearLayout>

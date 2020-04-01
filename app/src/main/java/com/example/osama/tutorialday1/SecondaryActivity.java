@@ -1,6 +1,9 @@
 package com.example.osama.tutorialday1;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,10 +15,12 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -218,5 +223,42 @@ public class SecondaryActivity extends AppCompatActivity {
         audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         Toast.makeText(this, "Changed to Normal mode", Toast.LENGTH_SHORT).show();
     }
+
     //**************************** End of Audio Manager ********************///
+
+    /* *************************** Notification tutorial *******************/
+    public void showNotification(View view) {
+        NotificationCompat.Builder notiBuilder = new NotificationCompat.Builder(this);
+        notiBuilder.setSmallIcon(R.drawable.imagebutton);
+        notiBuilder.setContentTitle("Notification Example");
+        notiBuilder.setContentText("This is a test Notification");
+
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+       // inboxStyle.setBigContentTitle("Big tile detail");
+
+        inboxStyle.addLine("OSAMA");
+        inboxStyle.addLine("JUTHY");
+        inboxStyle.addLine("ALI");
+        inboxStyle.addLine("JUBUDU");
+
+        notiBuilder.setStyle(inboxStyle);
+
+        Intent intent = new Intent(this, NotificationView.class);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(NotificationView.class);
+        stackBuilder.addNextIntent(intent);
+
+        //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT) ;
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        notiBuilder.setContentIntent(pendingIntent);
+
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, notiBuilder.build());
+
+
+    }
+    /* *************************** END Notification tutorial *******************/
+    
 }
