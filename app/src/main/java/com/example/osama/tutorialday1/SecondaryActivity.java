@@ -7,6 +7,7 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -19,6 +20,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.test.mock.MockPackageManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -38,11 +41,15 @@ public class SecondaryActivity extends AppCompatActivity {
     Button stopPlayingLastRecording;
 
     public static final int requestPermissionCode = 1;
-    String savedMediaPath="";
+    public static final int requestLocationPermissionCode = 2;
+    String savedMediaPath = "";
 
     MediaPlayer mediaPlayer;
     MediaRecorder mediaRecorder;
     AudioManager audioManager;
+
+    LocationTracker gpsTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -260,5 +267,40 @@ public class SecondaryActivity extends AppCompatActivity {
 
     }
     /* *************************** END Notification tutorial *******************/
-    
+
+    /* **************************** GPS Location tutorial **********************/
+
+    public void getCurrentLocation(View view) {
+        try{
+            if(ActivityCompat.checkSelfPermission(SecondaryActivity.this, ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED);
+            {
+                ActivityCompat.requestPermissions(SecondaryActivity.this , new String[]{ACCESS_FINE_LOCATION}, requestLocationPermissionCode);
+            }
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        gpsTracker = new LocationTracker(getApplicationContext(),SecondaryActivity.this);
+        Location location = gpsTracker.getLocation();
+        if(gpsTracker.canGetLocation) {
+            if(location!=null){
+                double latitute = location.getLatitude();
+                double longitude = location.getLongitude();
+                Toast.makeText(getApplicationContext(), "latitute: " + Double.toString(latitute)
+                        + "\nlongitute: " + Double.toString(longitude), Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "location is null", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "SHOWSETTING ALERT", Toast.LENGTH_SHORT).show();
+            gpsTracker.showSettingAlert();
+        }
+
+    }
+    /* ****************************END GPS Location tutorial **********************/
 }

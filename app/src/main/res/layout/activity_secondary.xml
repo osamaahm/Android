@@ -62,7 +62,8 @@
  </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/vibratebtn"
             android:text="vibrate"
@@ -97,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="changeToNormalMode"/>
+    </LinearLayout>
         <Button
             android:id="@+id/notiBtn"
             android:text="Tap for notification"
@@ -104,5 +106,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="showNotification"/>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/getLocation"
+            android:text="Get Current Location"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="getCurrentLocation"/>
+
+
 </LinearLayout>

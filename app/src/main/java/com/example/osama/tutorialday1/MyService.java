@@ -2,11 +2,12 @@ package com.example.osama.tutorialday1;
 
 import android.app.Service;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-public class MyService extends Service {
+public class MyService extends Service{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
