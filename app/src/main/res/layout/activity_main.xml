@@ -47,8 +47,49 @@
         android:id="@+id/callBtn"
         android:text="Call 01558986259"
         android:onClick="makeCall"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/turnOnBtn"
+            android:text="Turn on Bluetooth"
+            android:layout_weight="1"
+            android:onClick="turnOnBlueTooth"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/VisibilityBtn"
+            android:text="Bluetooth visibility"
+            android:layout_weight="1"
+            android:onClick="visibilityChange"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/showDevicesBtn"
+            android:layout_weight="1"
+            android:text="Show BT Devices"
+            android:onClick="showBTDevies"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/turnOffBtn"
+            android:layout_weight="1"
+            android:text="Turn off"
+            android:onClick="turnOffBT"/>
 
 
+    </LinearLayout>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/devicelistLV"/>
 
 
 </LinearLayout>
