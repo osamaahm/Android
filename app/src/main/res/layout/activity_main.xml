@@ -16,6 +16,15 @@
         android:layout_gravity="center"
         android:textSize="30dp"
         android:textColor="#112"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/getTextBtn"
+        android:text="Click here to get contacts"
+        android:onClick="getContact"
+        />
+
+
 
     <ListView
         android:layout_width="wrap_content"
